@@ -11,6 +11,9 @@ var numberofguess;
 // array of guessed letters
 var guessedLetters = [];
 
+//array of letters in word to guess
+var lettersinWord = [];
+
 client.once('ready', () => {
     console.log('Ready!')
 })
@@ -20,6 +23,7 @@ var i;
 var j;
 var wordToGuess = [];
 var guess;
+var Letterguess;
 
 //get a message from server
 client.on('message', message => {
@@ -33,16 +37,8 @@ client.on('message', message => {
        // message.channel.send(message.content);
 
          if (message.content.toLocaleLowerCase().startsWith(`${prefix}help`)) {
-            message.channel.send("Things I can do!\n`h/New Game:` Starts a new game!\n`h/hint:` Sends a random letter from puzzle with penality!\n`/h hint w/p:` Sends a random letter from puzzle without penality!\n");
+            message.channel.send("Things I can do!\n`h/New Game |word|:` Starts a new game (double bar the word you want to be guessed)!\n`h/hint:` Sends a random letter from puzzle with penality!\n`/h hint w/p:` Sends a random letter from puzzle without penality!\n");
          }
-        /*
-         else if (message.content.toLocaleLowerCase().startsWith(`${prefix}new game`)) {
-            // message.reply(`New Game! Will go to your DMS and ask for puzzle phrase!`)
-            message.reply(`New Game! Respond with your word with a spoiler tag please!`)
-              .then(sent => console.log(`Sent a reply to ${sent.author.username}`))
-                .catch(console.error);    
-         }
-         */
          else if (message.content.toLocaleLowerCase().startsWith(`${prefix}new game ||`)) {
              // message.reply(`New Game! Will go to your DMS and ask for puzzle phrase!`)
              message.reply(`New Game!`)
@@ -50,16 +46,21 @@ client.on('message', message => {
                  .catch(console.error);
 
              wordToGuess = String(message).substring(13, String(message).length - 2);
-             message.channel.send("GUESSED WORD?: " + wordToGuess);
+            console.log("--------GUESSED WORD?: " + wordToGuess);
          }
-        
-        
-        
-       
-        searchifLetterisinWord(message, wordToGuess);
+        else if (message.content.toLocaleLowerCase().startsWith(`${prefix}guess `)) {
+            if (wordToGuess.length === 0) {
+                message.channel.send("Need a word to guess!");
+            }
+            else {
+                Letterguess = String(message).substring(8, 9);
+                searchifLetterisinWord(Letterguess, wordToGuess);
+            }
+        }
 
-        
-        
+       
+       searchifLetterisinWord(message, wordToGuess);
+
         //message.channel.send('Full Hangman!', { files: ["./images/FullHangman.png"] });
        // message.channel.send('_ _ _ _ _');
     }
@@ -69,22 +70,25 @@ client.on('message', message => {
 
 function searchifLetterisinWord(guess, wordtoGuess) {
 
-    for (i = 0; i < 26; i++) {
-        if (guess.content.toLocaleLowerCase().startsWith(letter[i])) {
+    for (var j = 0; j < wordToGuess.length; j++){
+        lettersinWord[j] = String(wordToGuess).substring(j, j + 1);
+       
+    }
+    console.log("--------Length of word to guess , " + wordToGuess + ", is: " + wordToGuess.length);
+    console.log("--------Guess is: " + String(guess).substring(0, 1));
+    console.log("--------Guessed Letter is: " + lettersinWord);
 
-           
-            guess.channel.send("Letter! : " + letter[i]);
-            wordToGuess[i] = letter[i];
-            guess.channel.send("Word to guess: " + wordToGuess);
+    for (i = 0; i < wordToGuess.length; i++) {
+        guess.channel.send("Letter: " + String(guess).substring(0, 1));
+        if (guess.content.toLocaleLowerCase().startsWith(lettersinWord[i])) {
+            guess.channel.send("Is in word!");
 
-            /*
-             for (j = 0; j < message.length; j++) {
-                //if this letter never shows up
-                 if (message.indexOf("p") === -1) {
-                     message.channel.send("Not a letter! ");
-                 }
-              } 
-            */
+            //putting guessed word in array of guessed words
+            guessedLetters[i] = String(guess).substring(0, 1);
+            guess.channel.send("Guessed words: "  + guessedLetters);
+        }
+        else {
+            guess.channel.send("Not a letter!");
         }
     }
 }
