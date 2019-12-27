@@ -31,7 +31,7 @@ client.on('message', message => {
     if (!message.author.bot) {
         //how to play
         if (message.content.toLocaleLowerCase().startsWith(`${prefix}info`)) {
-            message.channel.send("Things I can do!\n`h/New Game |word|:` Starts a new game(double bar the word you want to be guessed)!\n`h/guess:` Guess a letter in word\n`h/hint:` Sends a random letter from puzzle with penality!\n`h/hint w/outp:` Sends a random letter from puzzle without penality!\n`h/game status:` Shares number of guesses made\n");
+            message.channel.send("\n`h/New Game |word|:` Starts a new game(double bar the word you want to be guessed!)\n`h/guess x:` Guess a letter in word (example, letter x) \n`h/hint:` Sends a random letter from puzzle with penality!\n`h/hint w/outp:` Sends a random letter from puzzle without penality!\n`h/game status:` Shares number of guesses made\n");
         }
         //new game
         else if (message.content.toLocaleLowerCase().startsWith(`${prefix}new game ||`)) {
@@ -58,7 +58,7 @@ client.on('message', message => {
         //game info, tells number of guesses, letters gotten
         else if (message.content.toLocaleLowerCase().startsWith(`${prefix}game status`)) {
             message.channel.send("`Hangman Game Info:` ");
-            message.channel.send("Number of wrong guesses/hints used: " + numberofguess);
+            message.channel.send("Number of wrong guesses/hints used: " + numberofguess + "/10");
             hangmanstatus(numberofguess, guessedLetters, blankLetters, message);   
         }
         //hint w/outp
