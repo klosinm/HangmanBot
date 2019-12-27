@@ -34,18 +34,22 @@ client.on('message', message => {
             message.channel.send("\n`h/New Game |word|:` Starts a new game(double bar the word you want to be guessed!)\n`h/guess x:` Guess a letter in word (example, letter x) \n`h/hint:` Sends a random letter from puzzle with penality!\n`h/hint w/outp:` Sends a random letter from puzzle without penality!\n`h/game status:` Shares number of guesses made\n");
         }
         //new game
-        else if (message.content.toLocaleLowerCase().startsWith(`${prefix}new game ||`)) {
-            message.reply(`New Game!`)
-                .then(sent => console.log(`Sent a reply to ${sent.author.username}`))
-                .catch(console.error);
+        else if (message.content.toLocaleLowerCase().startsWith(`${prefix}new game`)) {
+            //ERROR: not correct format in starting new game
+            var n = String(message).indexOf("||", 12);
+            if (String(message).indexOf("||") != 11 || n === -1) {
+                message.reply("Not correct format in starting a game! Surround word/phrase by double bars \"||\"");
+                return;
+            }
+            message.reply(`New Game!`);
            
             wordToGuess = String(message).substring(13, String(message).length - 2);
             console.log("--------GUESSED WORD?: " + wordToGuess);
+            console.log("--------index of ||: " + n);
 
             //putting guess in array
             for (var j = 0; j < wordToGuess.length; j++) {
                 lettersinWord[j] = String(wordToGuess).substring(j, j + 1);
-
                 if (lettersinWord[j] === " ") {
                     blankLetters[j] = "   ";
                 }
