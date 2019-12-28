@@ -5,9 +5,6 @@ client.once('ready', () => {
     console.log('Ready!')
 })
 
-//possible letters for game
-var letter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
 //number of guesses 
 var numberofguess = 0;
 // array of guessed letters
@@ -15,10 +12,10 @@ var guessedLetters = [];
 
 //array of letters in word to guess
 var lettersinWord = [];
+var wordsLeft = [];
 var blankLetters = [];
 
 var i, k;
-var p = 0;
 var c = 0;
 var t = 0;
 
@@ -48,6 +45,7 @@ client.on('message', message => {
             //putting guess in array
             for (var j = 0; j < wordToGuess.length; j++) {
                 lettersinWord[j] = String(wordToGuess).substring(j, j + 1);
+                wordsLeft[j] = String(wordToGuess).substring(j, j + 1);
                 if (lettersinWord[j] === " ") {
                     blankLetters[j] = "   ";
                 }
@@ -56,7 +54,7 @@ client.on('message', message => {
                     t = 1;
                 }
             }
-
+          
             //ERROR: tries to play an empty word/phrase
             if (t != 1) {
                 message.reply("Not correct format in starting a game! Cannot have people guess a blank statement!");
@@ -64,6 +62,8 @@ client.on('message', message => {
             }
            
             console.log("--------GUESSED WORD: " + wordToGuess);
+            console.log("--------lankletters: " + blankLetters);
+            console.log("--------wordsLeft: " + wordsLeft);
   
             message.reply(`New Game!`);
             hangmanstatus(numberofguess, guessedLetters, blankLetters, message);
@@ -72,57 +72,39 @@ client.on('message', message => {
         else if (message.content.toLocaleLowerCase().startsWith(`${prefix}game status`)) {
             message.channel.send("`Hangman Game Info:` ");
             message.channel.send("Number of wrong guesses or hints used: " + numberofguess + "/10");
-            hangmanstatus(numberofguess, guessedLetters, blankLetters, message);   
+            hangmanstatus(numberofguess, guessedLetters, blankLetters, message);
         }
         //hint w/outp
         else if (message.content.toLocaleLowerCase().startsWith(`${prefix}hint w/outp`)) {
-            var random = (Math.floor(Math.random() * wordToGuess.length));
             if (wordToGuess.length === 0) {
                 message.channel.send("Need a word to guess!");
             }
             else {
-                message.channel.send("This word has this letter in it (no penality): " + lettersinWord[random]);
-                for (var w = 0; w < wordToGuess.length; w++) {
-                    if (lettersinWord[w] === lettersinWord[random]) {
-                        blankLetters[w] = lettersinWord[random];
-                    }
-                }
-                hangmanstatus(numberofguess, guessedLetters, blankLetters, message);
+                hint(lettersinWord, guessedLetters, wordToGuess, message);
             }
+
+            hangmanstatus(numberofguess, guessedLetters, blankLetters, message);
         }
         //hint
-        else if (message.content.toLocaleLowerCase().startsWith(`${prefix}hint`)) {
-            var random = (Math.floor(Math.random() * wordToGuess.length));
-
-            //have a words left array
-
- //ERROR random number is a letter that has been guessed
-            if (letterused(lettersinWord[random], guessedLetters, message) == 1) {
-                
-            }
-            
+        else if (message.content.toLocaleLowerCase().startsWith(`${prefix}hint`)) {  
             if (wordToGuess.length === 0) {
                 message.channel.send("Need a word to guess!");
             }
             else {
-                message.channel.send("This word has this letter in it: " + lettersinWord[random]);
-                for (var w = 0; w < wordToGuess.length; w++){
-                    if (lettersinWord[w] === lettersinWord[random]) {
-                        blankLetters[w] = lettersinWord[random];
-                        guessedLetters.push(blankLetters[w]);
-                    }
-                }
-                numberofguess = 1 + numberofguess;
-                hangmanstatus(numberofguess, guessedLetters, blankLetters, message);
+                hint(lettersinWord, guessedLetters, wordToGuess, message);
             }
+          
+            numberofguess = 1 + numberofguess;   
+            hangmanstatus(numberofguess, guessedLetters, blankLetters, message);
         }
         //guess
         else if (message.content.toLocaleLowerCase().startsWith(`${prefix}guess`)) {
             if (wordToGuess.length === 0) {
                 message.channel.send("Need a word to guess!");
+                return;
             }
-            else if (String(message).substring(8, 9) === "") {
-                message.channel.send("Need input of one letter!");
+            if (String(message).substring(8, 9) === "") {
+                message.channel.send("Need input of one letter!");          
             }
             else if (String(message).length > 9) {
                 message.channel.send("Input only one letter please!");
@@ -130,24 +112,40 @@ client.on('message', message => {
             else {
                 Letterguess = String(message).substring(8, 9);
                 searchifLetterisinWord(String(message).substring(8, 9), wordToGuess, guessedLetters, message);
-                win(blankLetters, numberofguess, wordToGuess, message);
             } 
             hangmanstatus(numberofguess, guessedLetters, blankLetters, message);
         }
     }
 })
 
+function hint(lettersinWord, guessedLetters, wordToGuess, message) {
+    console.log("-----------wordToGuess before loop: " + String(wordToGuess));
+    console.log("-----------(wordsLeft).length before loop: " + (wordsLeft).length);
+   
+    var random = (Math.floor(Math.random() * (wordsLeft).length));
+    console.log("-----------random before loop: " + random);
+    console.log("-----------wordsLeft before for loop: " + wordsLeft);
+
+    message.channel.send("This word has this letter in it: " + wordsLeft[random]);
+    var wordholder = wordsLeft[random];
+    console.log("-----------wordsLeft[random]/wordholder before for loop: " + wordsLeft[random] + ", " + wordholder);
+
+    for (var w = 0; w < String(wordToGuess).length; w++) {
+        if (lettersinWord[w] === wordsLeft[random]) {   
+            blankLetters[w] = wordsLeft[random];
+        }
+    }
+
+    wordsLeft.splice(wordsLeft.indexOf(wordholder), 1);
+    guessedLetters.push(wordholder);
+    console.log("-----------guessedLetters: " + guessedLetters);
+    console.log("-----------wordsLeft after for loop: " + wordsLeft);
+} 
+
 //Checking if guessed word pallet is full, to see if word 
 //has been guessed or not
-function win(blankLetters, numberofguess, wordToGuess, message) {
+function win(blankLetters, message) {
     var winornot = 0;
-    //see if lost
-    if (numberofguess == 10) {
-        message.channel.send("GAME OVER");
-        message.channel.send({ files: ["./images/hangman10.png"] })
-            .then((() => message.channel.send("Word was: " + wordToGuess)))
-            .then((() => process.abort()));
-    }
     //see if won
     for (var j = 0; j < blankLetters.length; j++) {
         if (blankLetters[j] != " [ ] ") {
@@ -155,16 +153,22 @@ function win(blankLetters, numberofguess, wordToGuess, message) {
         }
     }
     if (blankLetters.length === winornot) {
-        message.channel.send("WON!")
-        message.channel.send({ files: ["./images/hangman0.png"] })
-            .then((() => message.channel.send("Word was: " + wordToGuess + "!")))
-            .then((() => process.abort()));   
+        return 1;
     }
 }
 
 //returns image on hangman, word: [],[],[],...
 function hangmanstatus(numberofguess, guessedLetters, blankLetters, message) {
-    if (numberofguess == 0) {
+    var g = 0;
+    //see if won
+    if (win(blankLetters, message) === 1) {
+        g = 1;
+        message.channel.send("WON!")
+        message.channel.send({ files: ["./images/won.png"] })
+            .then((() => message.channel.send("Word was: " + wordToGuess + "!")))
+            .then((() => process.abort()));  
+    }
+    else if (numberofguess == 0) {
         message.channel.send({ files: ["./images/hangman0.png"] });
     }
     else if (numberofguess == 1) {
@@ -197,20 +201,31 @@ function hangmanstatus(numberofguess, guessedLetters, blankLetters, message) {
     else if (numberofguess == 9) {
         message.channel.send({ files: ["./images/hangman9.png"] });
     }
-    message.channel.send("`HANGMAN    ` ")
-        .then((() => message.channel.send("Word: " + blankLetters)))
-        .then((() => message.channel.send("Guessed Letters: " + guessedLetters)));
+    //see if lost
+    else if (numberofguess == 10) {
+        g = 1;
+        message.channel.send("`GAME OVER    `");
+        message.channel.send({ files: ["./images/gameover.png"] })
+            .then((() => message.channel.send("Word was: " + wordToGuess)))
+            .then((() => process.abort()));
+    }
+    if (g != 1) {
+        message.channel.send("`HANGMAN    ` ")
+            .then((() => message.channel.send("Word: " + blankLetters)))
+            .then((() => message.channel.send("Guessed Letters: " + guessedLetters))); 
+    }
 }
+
 
 function letterused(Letterguess, guessedLetters, message) {
     //see if letter has already been guessed
     for (k = 0; k < String(guessedLetters).length; k++) {
         if (guessedLetters[k] === Letterguess) {
-            message.channel.send("Letter already guessed!");
             return 1;
         }
     }
 }
+
 
 //h/guess a 
 function searchifLetterisinWord(Letterguess, wordToGuess, guessedLetters, message) {
@@ -228,6 +243,8 @@ function searchifLetterisinWord(Letterguess, wordToGuess, guessedLetters, messag
                 c = 1;
                 //putting guessed word in array of guessed words
                 blankLetters[i] = Letterguess;
+                wordsLeft.splice(wordsLeft.indexOf(Letterguess), 1);
+                console.log("words left: " + wordsLeft);
             }
         }
 
@@ -235,12 +252,16 @@ function searchifLetterisinWord(Letterguess, wordToGuess, guessedLetters, messag
         if (c === 1) {
             message.channel.send("`" + Letterguess + "` is in word!");
             guessedLetters.push(Letterguess);
+           
         }
         else {
             message.channel.send("Not a letter!");
             numberofguess = 1 + numberofguess;
             guessedLetters.push(Letterguess);
         }
+    }
+    else {
+        message.channel.send("Letter already guessed!");
     }
 }
 
