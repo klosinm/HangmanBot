@@ -43,6 +43,7 @@ If stuck, a user can use the following command to get a hint for a letter in the
 ```
 h/hint 
 ``` 
+
 <img src="./images/hint.png" width="650">
 <br/>
 This takes a hit on the user, where a point is used, just like if they guessed incorrecly. 
@@ -51,6 +52,7 @@ If the user wishes to not be penalized for using a hint, they can use the comman
 ```
 h/hint w/outp
 ```
+
 No points will be deducted, and hangman will not be harmed while still getting a letter for the word/phrase.
 <img src="./images/hintwoup.png" width="650">
 
