@@ -46,6 +46,9 @@ client.on('message', message => {
            
             wordToGuess = String(message).substring(13, String(message).length - 2);
             guessedLetters = [];
+            blankLetters = [];
+            numberofguess = 0;
+
             //putting guess in array
             for (var j = 0; j < wordToGuess.length; j++) {
                 lettersinWord[j] = String(wordToGuess).substring(j, j + 1);
@@ -257,5 +260,6 @@ function searchifLetterisinWord(Letterguess, wordToGuess, guessedLetters, messag
 console.log("--------GUESSED WORD: " + wordToGuess);
 console.log("--------lankletters: " + blankLetters);
 console.log("--------wordsLeft: " + wordsLeft);
+console.log("--------numberofguess: " + numberofguess);
 
 client.login(token);

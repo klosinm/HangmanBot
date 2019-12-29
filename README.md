@@ -27,7 +27,8 @@ h/guess g
 ``` 
 (example is they are guessing letter g).
 This will prompt to outputs, one where g is in the word (like in dog )
-- image
+<img src="./images/guessright.png" width="650">
+<br/>
 
 Or where g is not in the word (like in cat):
 <img src="./images/guesswrong.png" width="650">
@@ -38,13 +39,23 @@ If stuck, a user can use the following command to get a hint for a letter in the
 ```
 h/hint 
 ``` 
-- image
+<img src="./images/hint.png" width="650">
+<br/>
 This takes a hit on the user, where a point is used, just like if they guessed incorrecly. If the user wishes to not play like this, they can use the command:
 ```
 h/hint w/outp
 ``` 
 where no points will get used, and hangman will not be harmed while still getting a letter for the word/phrase.
-
+<img src="./images/hintwoup.png" width="650">
+<br/>
+##### Game Status:
+During the game the user can type the command:
+```
+h/game status 
+``` 
+To recieve the number of wrong guesses or hints they have used (out of a max of 10).
+<img src="./images/gamestatus.png" width="650">
+<br/>
 
 ##### Win/Lose:
 If the users succesffuly guess the word/phrase, the end game will look like this:
@@ -52,15 +63,23 @@ If the users succesffuly guess the word/phrase, the end game will look like this
 <br/>
 
 If the users unforntuly do not guess the word/phrase afer a total of 10 inccorect attempts or hints, this is the end game:
-- image
+<img src="./images/lostgame.png" width="650">
+<br/>
 
 
 ## Errors <br/>
+- Starting a new game
 <img src="./images/newgameformaterror.png" width="650">
 <br/>
 
-- repeating a letter guess catch
-- guessing without a letter/to many letters
+- Guessing letters incorrectly
+<img src="./images/repeatguess.png" width="650">
+<br/>
+<img src="./images/guessnull.png" width="650">
+<br/>
+<img src="./images/guessmany.png" width="650">
+<br/>
+
 
 ____________________________________________________________________________________
-Last update: 12/27/2019
+Last update: 12/29/2019
