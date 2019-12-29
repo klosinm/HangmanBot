@@ -3,7 +3,7 @@ A bot on Discord that can ask one user for a word or phrase and have the other u
 
 ____________________________________________________________________________________
 ## Commands:<br/>
-To find out what this bot does (and how to play hangman), run the command
+To find out what this bot does (how to play hangman), run the command
 ```
 h/info
 ``` 
@@ -49,6 +49,7 @@ If the user wishes to not be penalized for using a hint, they can use the comman
 ```
 h/hint w/outp
 ``` 
+<br/>
 No points will be deducted, and hangman will not be harmed while still getting a letter for the word/phrase.
 <img src="./images/hintwoup.png" width="650">
 
@@ -57,7 +58,7 @@ During the game the user can type the command:
 ```
 h/game status 
 ``` 
-To recieve the number of wrong guesses or hints they have used (out of a max of 10).
+To recieve the number of wrong guesses or hints they have used (out of a max of 10):
 <img src="./images/gamestatus.png" width="650">
 
 ##### Win/Lose:
@@ -81,5 +82,5 @@ If the users do not guess the word/phrase afer a total of 10 incorrect attempts 
 <img src="./images/guessnull.png" width="650">
 <img src="./images/guessmany.png" width="650">
 <br/>
-____________________________________________________________________________________
+____________________________________________________________________________________<br/>
 Last update: 12/29/2019
