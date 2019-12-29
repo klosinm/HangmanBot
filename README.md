@@ -16,6 +16,7 @@ A User inputs a word with the command
 h/new game ||word or phrase||
 ``` 
 By asking the user to surround the word for others to guess with "||", discord blocks the word from being visable.<br/>
+<br/>
 In the example below, the word to guess is "cat":<br/>
 <img src="./images/newgame.png" width="600">
 <br/>
@@ -27,6 +28,7 @@ After the input for a word/phrase to guess is given, a user can guess a letter w
 h/guess g 
 ``` 
 (Above, letter g is the letter being guessed).<br/>
+<br/>
 This will prompt two outputs, one where g is in the word (like in dog ):
 <img src="./images/guessright.png" width="650">
 <br/>
@@ -43,13 +45,12 @@ h/hint
 <img src="./images/hint.png" width="650">
 <br/>
 This takes a hit on the user, where a point is used, just like if they guessed incorrecly. 
-If the user wishes to not be penalized for using a hint, they can use the command:
+If the user wishes to not be penalized for using a hint, they can use the command:<br/>
 ```
 h/hint w/outp
 ``` 
-where no points will be deducted, and hangman will not be harmed while still getting a letter for the word/phrase.
+No points will be deducted, and hangman will not be harmed while still getting a letter for the word/phrase.
 <img src="./images/hintwoup.png" width="650">
-<br/>
 
 ##### Game Status:
 During the game the user can type the command:
@@ -80,7 +81,6 @@ If the users do not guess the word/phrase afer a total of 10 incorrect attempts 
 <img src="./images/guessnull.png" width="650">
 <img src="./images/guessmany.png" width="650">
 <br/>
-
 
 ____________________________________________________________________________________
 Last update: 12/29/2019
