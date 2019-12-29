@@ -46,11 +46,9 @@ h/hint
 <br/>
 This takes a hit on the user, where a point is used, just like if they guessed incorrecly. 
 If the user wishes to not be penalized for using a hint, they can use the command:
-
 ```
 h/hint w/outp
 ```
-<br/>
 No points will be deducted, and hangman will not be harmed while still getting a letter for the word/phrase.
 <img src="./images/hintwoup.png" width="650">
 
