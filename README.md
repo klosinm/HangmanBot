@@ -30,7 +30,8 @@ This will prompt to outputs, one where g is in the word (like in dog )
 - image
 
 Or where g is not in the word (like in cat):
-- image
+<img src="./images/guesswrong.png" width="650">
+<br/>
 
 ##### Asking for a hint:
 If stuck, a user can use the following command to get a hint for a letter in the word/phrase:
@@ -47,7 +48,8 @@ where no points will get used, and hangman will not be harmed while still gettin
 
 ##### Win/Lose:
 If the users succesffuly guess the word/phrase, the end game will look like this:
-- image
+<img src="./images/wingame.png" width="650">
+<br/>
 
 If the users unforntuly do not guess the word/phrase afer a total of 10 inccorect attempts or hints, this is the end game:
 - image
