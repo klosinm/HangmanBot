@@ -47,7 +47,7 @@ h/hint
 This takes a hit on the user, where a point is used, just like if they guessed incorrecly. 
 If the user wishes to not be penalized for using a hint, they can use the command:<br/>
 ```
-h/hint w/outp
+h/hint 
 ``` 
 <br/>
 No points will be deducted, and hangman will not be harmed while still getting a letter for the word/phrase.
@@ -82,5 +82,6 @@ If the users do not guess the word/phrase afer a total of 10 incorrect attempts 
 <img src="./images/guessnull.png" width="650">
 <img src="./images/guessmany.png" width="650">
 <br/>
-____________________________________________________________________________________<br/>
+
+____________________________________________________________________________________
 Last update: 12/29/2019
