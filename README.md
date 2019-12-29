@@ -41,13 +41,14 @@ h/hint
 ``` 
 <img src="./images/hint.png" width="650">
 <br/>
-This takes a hit on the user, where a point is used, just like if they guessed incorrecly. If the user wishes to not play like this, they can use the command:
+This takes a hit on the user, where a point is used, just like if they guessed incorrecly. If the user wishes to not be penalized for using a hint, they can use the command:
 ```
 h/hint w/outp
 ``` 
-where no points will get used, and hangman will not be harmed while still getting a letter for the word/phrase.
+where no points will be deducted, and hangman will not be harmed while still getting a letter for the word/phrase.
 <img src="./images/hintwoup.png" width="650">
 <br/>
+
 ##### Game Status:
 During the game the user can type the command:
 ```
@@ -55,14 +56,13 @@ h/game status
 ``` 
 To recieve the number of wrong guesses or hints they have used (out of a max of 10).
 <img src="./images/gamestatus.png" width="650">
-<br/>
 
 ##### Win/Lose:
 If the users succesffuly guess the word/phrase, the end game will look like this:
 <img src="./images/wingame.png" width="650">
 <br/>
 
-If the users unforntuly do not guess the word/phrase afer a total of 10 inccorect attempts or hints, this is the end game:
+If the users do not guess the word/phrase afer a total of 10 incorrect attempts or hints, this is the end game:
 <img src="./images/lostgame.png" width="650">
 <br/>
 
@@ -70,11 +70,11 @@ If the users unforntuly do not guess the word/phrase afer a total of 10 inccorec
 ## Errors <br/>
 - Starting a new game
 <img src="./images/newgameformaterror.png" width="650">
-<br/>
 
-- Guessing letters incorrectly
+- Repeating a guess
 <img src="./images/repeatguess.png" width="650">
-<br/>
+
+- Incorrect guess format
 <img src="./images/guessnull.png" width="650">
 <br/>
 <img src="./images/guessmany.png" width="650">
