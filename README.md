@@ -29,7 +29,7 @@ h/guess g
 ``` 
 (Above, letter g is the letter being guessed).<br/>
 <br/>
-This will prompt two outputs, one where g is in the word (like in dog ):
+This will prompt two outputs, one where g is in the word (like in dog):
 <img src="./images/guessright.png" width="650">
 <br/>
 
