@@ -39,6 +39,7 @@ Or where g is not in the word (like in cat):
 
 ##### Asking for a hint:
 If stuck, a user can use the following command to get a hint for a letter in the word/phrase:
+
 ```
 h/hint 
 ``` 
@@ -46,6 +47,7 @@ h/hint
 <br/>
 This takes a hit on the user, where a point is used, just like if they guessed incorrecly. 
 If the user wishes to not be penalized for using a hint, they can use the command:
+
 ```
 h/hint w/outp
 ```
