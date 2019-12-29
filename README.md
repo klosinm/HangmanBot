@@ -81,6 +81,5 @@ If the users do not guess the word/phrase afer a total of 10 incorrect attempts 
 <img src="./images/guessnull.png" width="650">
 <img src="./images/guessmany.png" width="650">
 <br/>
-
 ____________________________________________________________________________________
 Last update: 12/29/2019
