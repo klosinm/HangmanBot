@@ -44,8 +44,7 @@ If stuck, a user can use the following command to get a hint for a letter in the
 h/hint 
 ``` 
 
-<img src="./images/hint.png" width="650">
-<br/>
+<img src="./images/hint.png" width="650"><br/>
 This takes a hit on the user, where a point is used, just like if they guessed incorrecly. 
 If the user wishes to not be penalized for using a hint, they can use the command:
 
