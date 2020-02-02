@@ -1,6 +1,6 @@
 #exlude config, package, package-loc json files
 
-package-loc.json
+package-lock.json
 
 package.json
 
