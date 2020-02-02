@@ -1,4 +1,5 @@
-/commands
-	/first
-index.js
-package.json
+#exlude config, package, package-loc json files
+
+package-loc.json/
+package.json/
+config.json/
