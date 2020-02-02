@@ -4,6 +4,8 @@ const client = new Discord.Client();
 client.once('ready', () => {
     console.log('Ready!')
 })
+//By: Monica Klosin
+
 
 //number of guesses 
 var numberofguess = 0;

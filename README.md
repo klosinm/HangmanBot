@@ -80,7 +80,7 @@ If the users do not guess the word/phrase afer a total of 10 incorrect attempts 
 - Repeating a guess (not penalized)
 <img src="./images/repeatguess.png" width="650">
 
-- Incorrect guess format
+- Incorrect guess format (not penalized)
 <img src="./images/guessnull.png" width="650">
 <img src="./images/guessmany.png" width="650">
 <br/>
