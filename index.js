@@ -1,6 +1,17 @@
 Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const client = new Discord.Client();
+
+//For Ziet
+http.createServer((req, res) => {
+    res.writeHead(200, {
+        'Content-type': 'text/plain'
+    });
+    res.write('Hey');
+    res.end();
+}).listen(4000);
+
+
 client.once('ready', () => {
     console.log('Ready!')
 })
